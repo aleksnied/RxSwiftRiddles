@@ -5,6 +5,9 @@
       location = "group:RxSwiftRiddlesPlayground.playground">
    </FileRef>
    <FileRef
+      location = "group:RxSwiftSolutionsPlayground.playground">
+   </FileRef>
+   <FileRef
       location = "group:RxSwiftRiddles.xcodeproj">
    </FileRef>
    <FileRef

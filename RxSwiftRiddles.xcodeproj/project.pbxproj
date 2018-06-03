@@ -18,6 +18,10 @@
 		FAB86FE420C41006004B458D /* RxSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB86FDD20C41006004B458D /* RxSwiftFramework.framework */; };
 		FAB86FE520C41006004B458D /* RxSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAB86FDD20C41006004B458D /* RxSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAB86FEA20C4102A004B458D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB86FC820C40E3D004B458D /* ViewController.swift */; };
+		FAB86FEF20C4533E004B458D /* RxSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB86FEE20C4533E004B458D /* RxSwiftUtils.swift */; };
+		FAB86FF020C4533E004B458D /* RxSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB86FEE20C4533E004B458D /* RxSwiftUtils.swift */; };
+		FAB86FF220C48228004B458D /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB86FF120C48228004B458D /* AtomicInteger.swift */; };
+		FAB86FF320C48228004B458D /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB86FF120C48228004B458D /* AtomicInteger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,8 @@
 		FAB86FDD20C41006004B458D /* RxSwiftFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxSwiftFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB86FDF20C41006004B458D /* RxSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxSwiftFramework.h; sourceTree = "<group>"; };
 		FAB86FE020C41006004B458D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB86FEE20C4533E004B458D /* RxSwiftUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftUtils.swift; sourceTree = "<group>"; };
+		FAB86FF120C48228004B458D /* AtomicInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,8 @@
 				FAB86FCD20C40E3D004B458D /* Assets.xcassets */,
 				FAB86FCF20C40E3D004B458D /* LaunchScreen.storyboard */,
 				FAB86FD220C40E3D004B458D /* Info.plist */,
+				FAB86FEE20C4533E004B458D /* RxSwiftUtils.swift */,
+				FAB86FF120C48228004B458D /* AtomicInteger.swift */,
 			);
 			path = RxSwiftRiddles;
 			sourceTree = "<group>";
@@ -300,10 +308,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwiftRiddles/Pods-RxSwiftRiddles-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -354,6 +364,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB86FC920C40E3D004B458D /* ViewController.swift in Sources */,
+				FAB86FF220C48228004B458D /* AtomicInteger.swift in Sources */,
+				FAB86FEF20C4533E004B458D /* RxSwiftUtils.swift in Sources */,
 				FAB86FC720C40E3D004B458D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +375,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB86FEA20C4102A004B458D /* ViewController.swift in Sources */,
+				FAB86FF320C48228004B458D /* AtomicInteger.swift in Sources */,
+				FAB86FF020C4533E004B458D /* RxSwiftUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

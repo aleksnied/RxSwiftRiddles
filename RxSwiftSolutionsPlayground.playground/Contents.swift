@@ -1,7 +1,4 @@
-// RxSwiftRiddles Playground by Aleksander Niedziolko
-// https://github.com/aleksnied
-// Based on RxRiddles by vanniktech
-// https://github.com/vanniktech/RxRiddles
+//Spoiler alert! Solutions below....
 
 import UIKit
 import RxSwift
@@ -17,7 +14,7 @@ import RxSwiftFramework
  */
 
 func solve1(value: Int) -> Observable<Int> {
-    return Observable.empty() //TODO: replace
+    return Observable.just(value)
 }
 
 var testScheduler = TestScheduler(initialClock: 0)
@@ -40,7 +37,7 @@ if observerInt.events == [Recorded.next(0,5), Recorded.completed(0)] {
  * Use case: You want to transform the data.
  */
 func solve2(source: Observable<Int>) -> Observable<Int> {
-    return Observable.empty() //TODO: replace
+    return source.map { $0 + 1 }
 }
 
 testScheduler = TestScheduler(initialClock: 0)
@@ -57,14 +54,14 @@ if observerInt.events == [Recorded.next(0,2),Recorded.next(0,6),Recorded.next(0,
 
 /**
  * Riddle 3
-
+ 
  * Don't emit odd numbers from the [source] Observable.
  *
  * Use case: You want to filter certain items out.
  */
- func solve3(source: Observable<Int>) -> Observable<Int> {
-    return Observable.empty() //TODO: replace
- }
+func solve3(source: Observable<Int>) -> Observable<Int> {
+    return source.filter { $0 % 2 == 0 }
+}
 
 testScheduler = TestScheduler(initialClock: 0)
 observerInt = testScheduler.createObserver(Int.self)
@@ -87,7 +84,9 @@ if observerInt.events == [Recorded.next(0,0),Recorded.next(0,2),Recorded.next(0,
  * Use case: Some button that can toggle two states. For instance a switch.
  */
 func solve4(source: Observable<Int>) -> Observable<Bool> {
-    return Observable.empty() //TODO: replace
+    return source.scan(false, accumulator: { (toggle, _) -> Bool in
+        return !toggle
+    })
 }
 
 testScheduler = TestScheduler(initialClock: 0)
@@ -111,7 +110,7 @@ if observerBool.events == [Recorded.next(0, true), Recorded.next(0, false), Reco
  * Use case: Two input fields in a calculator that need to be summed up and the result should be updated every time one of the inputs change.
  */
 func solve5(first: Observable<Int>, second: Observable<Int>) -> Observable<Int> {
-    return Observable.empty() //TODO: replace
+    return Observable.combineLatest(first, second) { $0 + $1 }
 }
 
 testScheduler = TestScheduler(initialClock: 0)
@@ -123,7 +122,8 @@ let subject2 = BehaviorSubject<Int>(value: 0)
 solve5(first: subject1, second: subject2).subscribe(observerInt)
 testScheduler.start()
 
-var solved = observerInt.events == [Recorded.next(0,0)]
+var solved = true
+solved = observerInt.events == [Recorded.next(0,0)] && solved
 
 subject1.onNext(2)
 solved = observerInt.events == [Recorded.next(0,0), Recorded.next(0,2)] && solved
@@ -139,39 +139,3 @@ if solved {
 } else {
     print("Riddle 5 : failed!")
 }
-
-/**
- * Riddle 6
- 
- * Execute both [first] and [second] Single's in parallel and provide both results as a pair.
- *
- * Use case: Execute two network requests in parallel and wait for each other and process the combined data.
- */
-func solve6(first: Single<Int>, second: Single<Int>) -> Single<(Int, Int)> {
-    return Single.just((0,0)) //TODO: replace
-}
-
-testScheduler = TestScheduler(initialClock: 0)
-var observerIntTuple = testScheduler.createObserver((Int, Int).self)
-var subscriptionCount = AtomicInteger(value: 0)
-
-let first6 = Single<Int>.timer(5, scheduler: testScheduler).map { _ in 10 }.do(onSubscribe: {
-    subscriptionCount.incrementAndGet()
-})
-let second6 = Single.just(10).do(onSubscribe: {
-    subscriptionCount.incrementAndGet()
-})
-
-solve6(first: first6, second: second6).asObservable().subscribe(observerIntTuple)
-testScheduler.start()
-
-//solved = subscriptionCount.value == 2 //We want to have subscribed immediately
-testScheduler.advanceTo(3)
-let events = observerIntTuple.events
-solved = observerIntTuple.events.isEmpty
-
-subject1.onNext(2)
-solved = observerInt.events == [Recorded.next(0,0), Recorded.next(0,2)] && solved
-
-subject2.onNext(5)
-solved = observerInt.events == [Recorded.next(0,0), Recorded.next(0,2), Recorded.next(0,7)] && solved
